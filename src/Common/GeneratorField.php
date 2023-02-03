@@ -27,6 +27,9 @@ class GeneratorField
     public $isPrimary = false;
     public $inForm = true;
     public $inIndex = true;
+    public $isOrderable = true;
+    public $isExportable = true;
+    public $isPrintable=true;
 
     public function parseDBType($dbInput)
     {
