@@ -24,6 +24,7 @@ use InfyOm\Generator\Generators\VueJs\RoutesGenerator as VueJsRoutesGenerator;
 use InfyOm\Generator\Generators\VueJs\ViewGenerator as VueJsViewGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Spatie\Permission\Models\Permission;
 
 class RollbackGeneratorCommand extends Command
 {
@@ -125,6 +126,13 @@ class RollbackGeneratorCommand extends Command
 
         $modelJsConfigGenerator = new ModelJsConfigGenerator($this->commandData);
         $modelJsConfigGenerator->rollback();
+
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.index')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.store')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.create')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.edit')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.update')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.destroy')->delete();
 
         if ($this->commandData->getAddOn('tests')) {
             $repositoryTestGenerator = new RepositoryTestGenerator($this->commandData);
