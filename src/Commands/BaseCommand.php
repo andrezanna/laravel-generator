@@ -21,6 +21,8 @@ use InfyOm\Generator\Generators\TestTraitGenerator;
 use InfyOm\Generator\Utils\FileUtil;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Spatie\Permission\Models\Permission;
+
 
 class BaseCommand extends Command
 {
@@ -150,6 +152,17 @@ class BaseCommand extends Command
                 }
             }
         }
+
+        $data = [
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.index', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.store', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.create', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.edit', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.update', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.destroy', 'guard_name'=> 'web'],
+        ];
+        Permission::insert($data);
+
         if (!$this->isSkip('dump-autoload') && !$this->commandData->getOption('migrate')) {
             $this->info('Generating autoload files');
             $this->composer->dumpOptimized();
