@@ -127,12 +127,12 @@ class RollbackGeneratorCommand extends Command
         $modelJsConfigGenerator = new ModelJsConfigGenerator($this->commandData);
         $modelJsConfigGenerator->rollback();
 
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.index')->delete();
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.store')->delete();
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.create')->delete();
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.edit')->delete();
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.update')->delete();
-        Permission::where('name',$this->commandData->dynamicVars['$TABLE_NAME$'].'.destroy')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.index')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.store')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.create')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.edit')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.update')->delete();
+        Permission::where('name',$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.destroy')->delete();
 
         if ($this->commandData->getAddOn('tests')) {
             $repositoryTestGenerator = new RepositoryTestGenerator($this->commandData);
