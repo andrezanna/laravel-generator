@@ -154,12 +154,12 @@ class BaseCommand extends Command
         }
 
         $data = [
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.index', 'guard_name'=> 'web'],
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.store', 'guard_name'=> 'web'],
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.create', 'guard_name'=> 'web'],
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.edit', 'guard_name'=> 'web'],
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.update', 'guard_name'=> 'web'],
-            ['name'=>$this->commandData->dynamicVars['$TABLE_NAME$'].'.destroy', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.index', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.store', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.create', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.edit', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.update', 'guard_name'=> 'web'],
+            ['name'=>$this->commandData->dynamicVars['$MODEL_NAME_PLURAL_CAMEL$'].'.destroy', 'guard_name'=> 'web'],
         ];
         Permission::insert($data);
 
